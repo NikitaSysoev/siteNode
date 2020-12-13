@@ -1,0 +1,47 @@
+<div class="sidebar">
+  <div class="box" id="auth">
+    <form action="/blog" method="post" id="login">
+      <h2>Вход</h2>
+      <div class="form-group">
+        <label for="login-login">Логин</label>
+        <input type="text" id="login-login" name="login" />
+      </div>
+      <div class="form-group">
+        <label for="login-password">Пароль</label>
+        <input type="password" id="login-password" name="password" />
+      </div>
+      <div class="form-buttons">
+        <button class="switch-button" name="login">Регистрация</button>
+        <button type="submit" class="content-button" name="action-form">
+          Войти
+        </button>
+      </div>
+    </form>
+    <form action="/blog" method="post" id="registration">
+      <h2>Регистрация</h2>
+      <div class="form-group">
+        <label for="registration-login">Логин</label>
+        <input type="text" id="registration-login" name="login" />
+      </div>
+      <div class="form-group">
+        <label for="registration-password">Пароль</label>
+        <input type="password" id="registration-password" name="password" />
+      </div>
+      <div class="form-group">
+        <label for="registration-password-confirm">Повтори пароль</label>
+        <input
+          type="password"
+          id="registration-password-confirm"
+          name="password"
+        />
+      </div>
+      <div class="form-buttons">
+        <button class="switch-button" name="reg">Вход</button>
+        <button type="submit" class="content-button" name="action-form">
+          Регистрация
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="box">box2</div>
+</div>

@@ -4,6 +4,8 @@ const autoprefixer = require('gulp-autoprefixer');
 const cssnano = require('gulp-cssnano');
 const nodemon = require('nodemon');
 const plumber = require('gulp-plumber');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglifyjs');
 
 function scss() {
   return gulp
@@ -32,17 +34,25 @@ function css() {
     .pipe(gulp.dest('public/stylesheets'));
 }
 
+function js() {
+  return gulp
+    .src(['dev/js/auth.js'])
+    .pipe(concat('scripts.js'))
+    // .pipe(uglify())
+    .pipe(gulp.dest('public/javascripts'));
+}
 
-function server(){
+function server() {
   nodemon({
     script: 'index',
     watch: ['index.js', 'app.js', 'gulpfile.js', 'public/*', 'public/*/**'],
     ext: 'js',
-  }).on('restart', ()=>{
-    gulp.src('index.js')
+  }).on('restart', () => {
+    gulp.src('index.js');
   });
-  gulp.watch('dev/scss/**/*.scss', scss)
-  gulp.watch('dev/css/**/*.css', css)
+  gulp.watch('dev/scss/**/*.scss', scss);
+  gulp.watch('dev/css/**/*.css', css);
+  gulp.watch('dev/js/**/*.js', js);
 }
 
-module.exports.default = gulp.series(server, scss, css)
+module.exports.default = gulp.series(server, scss, css, js);

@@ -118,3 +118,82 @@ p {
   border-radius: 5px;
   margin-top: 36px;
 }
+
+.blog {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.posts {
+  margin: 10px;
+  flex: 3;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.post h2 {
+  padding: 10px 20px;
+}
+
+.post p {
+  margin: 0;
+  padding: 10px 20px;
+}
+
+.sidebar {
+  margin: 10px;
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  margin-bottom: 10px;
+  background-color: aliceblue;
+  padding: 10px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.switch-button {
+  color: orange;
+  cursor: pointer;
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid orange;
+  text-transform: capitalize;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.form-buttons .content-button {
+  margin: 0;
+  padding: 10px;
+  border-style: none;
+}
+
+#registration {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .blog {
+    flex-direction: column-reverse;
+  }
+}
