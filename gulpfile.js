@@ -44,11 +44,11 @@ function js() {
 
 function server() {
   nodemon({
-    script: 'index',
-    watch: ['index.js', 'app.js', 'gulpfile.js', 'public/*', 'public/*/**'],
-    ext: 'js',
+    script: 'app.js',
+    watch: ['app.js', 'gulpfile.js', 'public/*', 'public/*/**'],
+    ext: ['js', 'json'],
   }).on('restart', () => {
-    gulp.src('index.js');
+    gulp.src('app.js');
   });
   gulp.watch('dev/scss/**/*.scss', scss);
   gulp.watch('dev/css/**/*.css', css);
