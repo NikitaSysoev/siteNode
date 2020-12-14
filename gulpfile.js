@@ -46,7 +46,7 @@ function server() {
   nodemon({
     script: 'app.js',
     watch: ['app.js', 'gulpfile.js', 'public/*', 'public/*/**'],
-    ext: ['js', 'json'],
+    ext: 'js',
   }).on('restart', () => {
     gulp.src('app.js');
   });

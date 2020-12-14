@@ -3,7 +3,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const staticAsset = require('static-asset');
 const mongoose = require('mongoose');
+
 const config = require('./config');
+const routes = require('./routes');
 
 // database
 mongoose.Promise = global.Promise;
@@ -18,6 +20,7 @@ mongoose.connection
 mongoose.connect(config.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
 //express
@@ -26,6 +29,7 @@ const app = express();
 // sets and uses
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(staticAsset(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -33,6 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   res.render('index');
 });
+
+app.use('/api/auth', routes.auth);
 
 app.get('/blog', (req, res) => {
   res.render('blog');
@@ -49,14 +55,14 @@ app.use((req, res, next) => {
   next(err);
 });
 /// error handling
-app.use((error, req, res, next)=>{
+app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.render('error', {
     message: error.message,
     error: !config.IS_PRODUCTION ? error : {},
-    title: 'Ooops....'
-  })
-})
+    title: 'Ooops....',
+  });
+});
 
 app.listen(config.PORT, () =>
   console.log(`App listening at http://localhost:${config.PORT}`),
