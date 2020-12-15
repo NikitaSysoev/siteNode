@@ -2,7 +2,7 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const cssnano = require('gulp-cssnano');
-const nodemon = require('nodemon');
+const nodemon = require('gulp-nodemon');
 const plumber = require('gulp-plumber');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglifyjs');
@@ -35,17 +35,27 @@ function css() {
 }
 
 function js() {
-  return gulp
-    .src(['dev/js/auth.js'])
-    .pipe(concat('scripts.js'))
-    // .pipe(uglify())
-    .pipe(gulp.dest('public/javascripts'));
+  return (
+    gulp
+      .src(['dev/js/auth.js'])
+      .pipe(concat('scripts.js'))
+      // .pipe(uglify())
+      .pipe(gulp.dest('public/javascripts'))
+  );
 }
 
 function server() {
   nodemon({
     script: 'app.js',
-    watch: ['app.js', 'gulpfile.js', 'public/*', 'public/*/**'],
+    watch: [
+      'app.js',
+      'gulpfile.js',
+      'public/*',
+      'public/*/**',
+      'config.js',
+      'models/*',
+      'routes/*',
+    ],
     ext: 'js',
   }).on('restart', () => {
     gulp.src('app.js');

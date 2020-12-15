@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const login = document.getElementById('login');
   const registration = document.getElementById('registration');
 
-  auth.addEventListener('click', (e) => {
+  auth.addEventListener('click', (e) => { 
     if (
       e.target.className !== 'content-button' &&
       e.target.name !== 'action-form'
@@ -15,9 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target.name === 'login') {
         login.style.display = 'none';
         registration.style.display = 'block';
+        [...login.querySelectorAll('input')].forEach((item) => {
+          item.value = '';
+        });
       } else {
         login.style.display = 'block';
         registration.style.display = 'none';
+        [...registration.querySelectorAll('input')].forEach((item) => {
+          item.value = '';
+        });
       }
     }
   });
