@@ -1,7 +1,9 @@
 <div class="sidebar">
   <div class="box" id="auth">
+    <% if(!user.id && !user.login) { %>
     <form action="/blog" method="post" id="login">
       <h2>Вход</h2>
+      <p class="login-error"></p>
       <div class="form-group">
         <label for="login-login">Логин</label>
         <input type="text" id="login-login" name="login" />
@@ -43,6 +45,9 @@
         </button>
       </div>
     </form>
+    <% } else { %>
+    <p>Привет <%= user.login %> <a href="/api/auth/logout">Выход</a></p>
+    <% } %>
   </div>
-  <div class="box">box2</div>
+  <div class="box">box</div>
 </div>
