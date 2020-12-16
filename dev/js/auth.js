@@ -2,11 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const auth = document.getElementById('auth');
   const login = document.getElementById('login');
   const registration = document.getElementById('registration');
+  const loginButton = login.querySelector('.content-button');
+  const regButton = registration.querySelector('.content-button');
 
-  login.querySelector('.content-button').addEventListener('click', loginFn);
-  registration
-    .querySelector('.content-button')
-    .addEventListener('click', registrationFn);
+  loginButton.addEventListener('click', loginFn);
+  regButton.addEventListener('click', registrationFn);
 
   auth.addEventListener('click', (e) => {
     e.preventDefault();
